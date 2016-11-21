@@ -4,16 +4,15 @@ import java.awt.AWTException;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 
 import quiz.WorldCapitals;
 
-public class MainClass {
+public class MainClass extends SeleniumHelper {
 
-	private static final long MAX_WAIT_MILLI_SEC = 60000;
+
 	public static class LocalDriverManager {
 		private static ThreadLocal<WebDriver> browserInstanceHolder = new ThreadLocal<WebDriver>();
 
@@ -29,21 +28,7 @@ public class MainClass {
 		}
 	}
 
-	public static WebElement waitForPageContainsWebElement(WebDriver driver, By by) {
-		long end = System.currentTimeMillis() + MAX_WAIT_MILLI_SEC;
-		WebElement webElement = null;
-		while (System.currentTimeMillis() < end) {
-			try {
-				webElement = driver.findElement(by);
-				if (webElement != null) {
-					break;
-				}
-			} catch (NoSuchElementException e) {
-				// fine
-			}
-		}
-		return webElement;
-	}
+
 
 	public static void main(String[] args) throws AWTException, InterruptedException, FindFailed {
 		WorldCapitals worldCapitals = new WorldCapitals();
@@ -61,9 +46,8 @@ public class MainClass {
 
 		driver.get(baseUrl);
 
-		driver.manage().window().maximize();  
-		waitForPageContainsWebElement(driver, By.className("quizTitle"));
-		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		waitForWebElementVisible(driver, By.id("nextQuestion"));
 		WebElement quizContainer = driver.findElement(By.className("quizTitle"));
 		System.out.print("quiz name is : " + quizContainer.getText() + "\n");
 

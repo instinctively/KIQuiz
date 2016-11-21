@@ -13,7 +13,7 @@ public class BaseTestHelper {
 	static WebDriver driver;
 	public static WebDriver createChromeDriverInstance() {
 		String driverLocation = null;
-		driverLocation = "C:\\chrome\\chromedriver.exe";
+		driverLocation = ".\\driver\\win\\chromedriver.exe";
 		driver = new ChromeDriver(chromeDriverSetup(driverLocation));
 		return driver;
 	}
