@@ -12,18 +12,22 @@ public class FamousPoets extends SeleniumHelper {
 
 	public enum Question {
 
-		LangstonHughes("Who wrote \"Life is Fine\"?", "Langston Hughes"),
-		ShelSilverstein("Who wrote \"Messy Room\"?", "Shel Silverstein"),
-		RobertFrost("Who wrote \"The Road Not Taken\"?", "Robert Frost"),
-		LangstonHughesAmerica("Who Wrote \"Let America Be America Again\"?", "Langston Hughes"),
-		PabloNeruda("Who Wrote \"If You Forget Me\"?", "Pablo Neruda"),
-		EmilyDickinson("Who wrote \"There is Another Sky\"?", "Emily Dickinson"),
-		MayaAngelou("Who wrote \"Phenomenal Woman\"?", "Maya Angelou"),
-		EdgarAllanPoe("Who wrote \"A Dream Within A Dream\"?", "Edgar Allan Poe"),
-		WHAuden("Who wrote \"Funeral Blues\"?", "W.H. Auden"),
-		DylanThomas("Who wrote \"Do Not Go Gentle To That Good Night\"?", "Dylan Thomas"),
-		EECummings("Who Wrote \"I Carry Your Heart With Me\"?", "E.E. Cummings"),
-		ShelSilversteinSidewalk("Who wrote \"Where the Sidewalk Ends\"?", "Shel Silverstein");
+		LangstonHughes("who wrote life is fine?", "Langston Hughes"),
+		ShelSilverstein("who wrote messy room?", "Shel Silverstein"),
+		RobertFrost("who wrote the road not taken?", "Robert Frost"),
+		LangstonHughesAmerica("who wrote let america be america again?", "Langston Hughes"),
+		PabloNeruda("who wrote if you forget me?", "Pablo Neruda"),
+		RoberFrost("who wrote stopping by the woods on a snowy evening?", "Robert Frost"),
+		EzraPound("who wrote a girl?", "Ezra Pound"),
+		WaltWhitman("who wrote to you?", "Walt Whitman"),
+		EmilyDickinsonSky("who wrote there is another sky?", "Emily Dickinson"),
+		MayaAngelou("who wrote phenomenal woman?", "Maya Angelou"),
+		EdgarAllanPoe("who wrote a dream within a dream?", "Edgar Allan Poe"),
+		EmilyDickinson("who wrote if those i loved were lost?", "Emily Dickinson"),
+		WHAuden("who wrote funeral blues?", "W.H. Auden"),
+		DylanThomas("who wrote do not go gentle to that good night?", "Dylan Thomas"),
+		EECummings("who wrote i carry your heart with me?", "E.E. Cummings"),
+		ShelSilversteinSidewalk("who wrote where the sidewalk ends?", "Shel Silverstein");
 
 		private String question;
 		private String answer;
@@ -40,18 +44,23 @@ public class FamousPoets extends SeleniumHelper {
 		}
 
 		private static final Map<String, Question> lookup = new HashMap<String, Question>();
-		
+
 		static {
 			for(Question q: EnumSet.allOf(Question.class))
 				lookup.put(q.getQuestion(), q);
 		}
 		public static Question get(String question) {
-		    return (Question) lookup.get(question);
-		  }
+			return (Question) lookup.get(question);
+		}
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			question = question.replace("\"", "").toLowerCase();
+			System.out.println("changed question is : " + question);
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

@@ -1,14 +1,13 @@
 package selenium;
 
 import java.awt.AWTException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
-
-import quiz.WorldCapitals;
 
 public class MainClass extends SeleniumHelper {
 
@@ -30,12 +29,11 @@ public class MainClass extends SeleniumHelper {
 
 
 
-	public static void main(String[] args) throws AWTException, InterruptedException, FindFailed {
-		WorldCapitals worldCapitals = new WorldCapitals();
+	public static void main(String[] args) throws AWTException, InterruptedException, FindFailed, IOException {
 
+		Quizes quiz = Quizes.GeometricShapes;
 		WebDriver driver = BaseTestHelper.createChromeDriverInstance();
-		Finder finder = new Finder();
-		String baseUrl = worldCapitals.url;
+		String baseUrl = quiz.getUrl();
 
 		driver.get(baseUrl);
 
@@ -50,8 +48,7 @@ public class MainClass extends SeleniumHelper {
 		waitForWebElementVisible(driver, By.id("nextQuestion"));
 		WebElement quizContainer = driver.findElement(By.className("quizTitle"));
 		System.out.print("quiz name is : " + quizContainer.getText() + "\n");
-
-		finder.solveQuiz(driver);
+		Solver.solveQuiz(driver, quiz.getName());
 		driver.close();
 	}
 }

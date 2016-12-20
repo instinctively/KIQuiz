@@ -57,7 +57,10 @@ public class GeometricShapes extends SeleniumHelper {
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

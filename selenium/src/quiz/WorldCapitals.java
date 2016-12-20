@@ -14,9 +14,11 @@ public class WorldCapitals extends SeleniumHelper {
 
 	public enum Question {
 		Brussels("What is the capital of Belgium?", "Brussels"),
+		BuenosAires("What is the capital of Argentina?", "Buenos Aires"),
 		Berlin("What is the capital of Germany?", "Berlin"),
 		Canberra("What is the capital of Australia?", "Canberra"),
 		Ottawa("What is the capital of Canada?", "Ottawa"),
+		Paris("What is the capital of France?", "Paris"),
 		Tokyo("What is the capital of Japan?", "Tokyo"),
 		Helsinki("What is the capital of Finland?", "Helsinki"),
 		Nassau("What is the capital of The Bahamas?", "Nassau"),
@@ -24,11 +26,13 @@ public class WorldCapitals extends SeleniumHelper {
 		Havana("What is the capital of Cuba?", "Havana"),
 		Brasilia("What is the capital of Brazil?", "Brasilia"),
 		Vienna("What is the capital of Austria?", "Vienna"),
+		Athens("What is the capital of Greece?", "Athens"),
 		NewDelhi("What is the capital of India?", "New Delhi"),
 		Rome("What is the capital of Italy?", "Rome"),
 		Cairo("What is the capital of Egypt?", "Cairo"),
 		Budapest("What is the capital of Hungary?", "Budapest"),
 		Copenhagen("What is the capital of Denmark?", "Copenhagen"),
+		MexicoCity("What is the capital of Mexico?", "Mexico City"),
 		Beijing("What is the capital of China?", "Beijing");		
 
 		private String question;
@@ -57,7 +61,10 @@ public class WorldCapitals extends SeleniumHelper {
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

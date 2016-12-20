@@ -13,17 +13,21 @@ public class SolarSystem extends SeleniumHelper {
 	public enum Question {
 
 		Mercury("Which planet is closest to the sun?", "Mercury"),
+		MercurySmall("Which is the smallest planet in the solar system?", "Mercury"),
+		SatJunk("What man-made objects exist in our solar system?", "Satellites & Space Junk"),
 		Asteroids("What separates the inner and outer solar system?", "Band of asteroids"),
+		CarbonDioxide("Venus atmosphere is primarily made up of what gas?", "Carbon Dioxide"),
 		DirtyIce("What are comets made of?", "Dirty Ice"),
+		Sun("Every object in our solar system revolves around the _______.", "Sun"),
 		Neptune("Which planet is furthest from the sun?", "Neptune"),
 		Rings("Saturn is famous for its ________ that rotate around it.", "Rings"),
 		Jupiter("What is the largest planet in the solar system?", "Jupiter"),
 		Hurricane("Jupiter has a ________ in its atmosphere but no solid surface.", "Hurricane"),
 		DwarfPlanet("What is the correct term for Pluto?", "Dwarf Planet"),
 		Red("Mars is known as the _____ planet.", "Red"),
-		Blue("Uranus has a _______ glow to it", "Blue"),
+		Blue("Uranus has a _______ glow to it.", "Blue"),
 		Eight("How many planets are in our solar system?", "Eight"),
-		VenusMars("Which two planets are Earth's \"neighbors\"?", "Venus & Mars");
+		VenusMars("Which two planets are Earths neighbors", "Venus & Mars");
 
 		private String question;
 		private String answer;
@@ -51,7 +55,12 @@ public class SolarSystem extends SeleniumHelper {
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			question = question.replaceAll("\"", "");
+			question = question.replaceAll("\'", "");
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

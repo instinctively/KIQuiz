@@ -22,8 +22,16 @@ public class Dinosaurs extends SeleniumHelper {
 		LateCretaceousRex("In what period did the Tyrannosaurus live?", "Late Cretaceous"),
 		Stegosaurus("Which of the following was not a flying reptile?", "Stegosaurus"),
 		LateCretaceousTrike("In what period did the Triceratops live?", "Late Cretaceous"),
+		DiplodocusHollow("Which dinosaur had hollow limb bones?", "Diplodocus"),
 		SirRichardOwen("Who coined the term 'dinosauria?'", "Sir Richard Owen"),
-		LateJurassic("In what period did the Stegosaurus live?", "Late Jurassic");
+		LateJurassicStego("In what period did the Stegosaurus live?", "Late Jurassic"),
+		Mesozoic("In what era did dinosaurs live?", "Mesozoic"),
+		Pterodactyl("Which of these is not a dinosaur?", "Pterodactyl"),
+		Extinct("When did dinosaurs become extinct?", "65 million years ago"),
+		LateJurassicDiplo("In what period did the Diplodocus live?", "Late Jurassic"),
+		TerribleLizard("What does the word 'dinosaur' mean?", "Terrible Lizard"),
+		Tyrannosaurus("Which carnivorous dinosaur had teeth up to 8 inches long?", "Tyrannosaurus"),
+		Sauropods("The largest dinosaurs were __________________.", "Sauropods");
 
 		private String question;
 		private String answer;
@@ -51,7 +59,10 @@ public class Dinosaurs extends SeleniumHelper {
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

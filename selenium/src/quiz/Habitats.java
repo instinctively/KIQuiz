@@ -18,10 +18,16 @@ public class Habitats extends SeleniumHelper {
 		WarmWetHumid("What kind of a climate does a swamp have?", "Warm, wet, humid"),
 		Ocean("What is the largest habitat on the planet?", "Ocean"),
 		Desert("What is the habitat that has little rain and intense sunshine?", "Desert"),
+		MountainsOcean("Which of the following is NOT part of the Ocean landscape?", "Mountains"),
 		ConiferousForest("Which habitat has trees with needle shaped leaves?", "Coniferous Forest"),
 		HabitatDefinition("What is a habitat?", "The natural home or environment of an animal, plant, or other organism."),
 		Antarctica("Which continent does NOT have Grasslands?", "Antarctica"),
 		Bear("Which is a large predator that lives in Coniferous Forests?", "Bear"),
+		Tundra("What is the coldest habitat?", "Tundra"),
+		Temperate("Which type of habitat can be found in all ranges of climate?", "Temperate Forests"),
+		Mountains("Which habitat do animals have to withstand lower oxygen levels?", "Mountains"),
+		OceanWhale("The largest animal in the world, the blue whale, resides in which habitat?", "Ocean"),
+		Nocturnal("Animals in the desert have adopted a ___________ lifestyle to survive the heat.", "Nocturnal"),
 		Cactus("What type of plant grows in the desert?", "Cactus"),
 		CoralReef("Which of the following is NOT a habitat found on land?", "Coral Reef");
 
@@ -51,7 +57,10 @@ public class Habitats extends SeleniumHelper {
 	}
 
 	public String getAnswer(String question) {
-		Question.get(question);
-		return Question.get(question).toString();
+		try {
+			return Question.get(question).getAnswer();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }
